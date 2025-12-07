@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookNook - Digital Library</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://publisher.linkvertise.com/cdn/linkvertise.js"></script><script>linkvertise(1458681, {whitelist: [], blacklist: [""]});</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-book-open"></i>
+            <span>BookNook</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#featured">Featured</a>
+            <a href="#upload">Upload</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search books...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Discover Thousands of Free PDF Books</h1>
+            <p>Explore, read, and download your favorite books in digital format</p>
+            <button class="cta-button">Start Reading</button>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Books">
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories" id="categories">
+        <h2>Browse by Category</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <i class="fas fa-science"></i>
+                <h3>Science</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-history"></i>
+                <h3>History</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-heart"></i>
+                <h3>Romance</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-user-secret"></i>
+                <h3>Mystery</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Business</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Technology</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Grid -->
+    <section class="books-section" id="featured">
+        <h2>Featured Books</h2>
+        <div class="books-grid" id="booksContainer">
+            <!-- Books will be loaded here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="upload-section" id="upload">
+        <h2>Share Your Books</h2>
+        <div class="upload-box">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Drag & drop your PDF files here or click to browse</p>
+            <button class="upload-btn">Upload PDF</button>
+            <p class="upload-note">Max file size: 50MB</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>BookNook</h3>
+                <p>Your digital library for free PDF books</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#home">Home</a>
+                <a href="#categories">Categories</a>
+                <a href="#featured">Featured</a>
+                <a href="#upload">Upload</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>contact@booknook.com</p>
+                <div class="social-icons">
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">© 2024 BookNook. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
