@@ -5,23 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookNook - Digital Library</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://publisher.linkvertise.com/cdn/linkvertise.js"></script><script>linkvertise(1458681, {whitelist: [], blacklist: [""]});</script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Top Ad Banner -->
+    <div class="ad-banner">
+        <div class="ad-container">
+            <!-- Your Linkvertise ad -->
+            <iframe src="https://publisher.linkvertise.com/cdn/ads/LV-728x90/index.html" 
+                    frameborder="0" 
+                    height="90" 
+                    width="728"
+                    class="ad-frame">
+            </iframe>
+            <a href="https://publisher.linkvertise.com/ac/1458681" 
+               target="_blank" 
+               class="ad-link">
+            </a>
+            <div class="ad-label">Advertisement</div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">
             <i class="fas fa-book-open"></i>
             <span>BookNook</span>
         </div>
-        <div style="position: relative;"><iframe src="https://publisher.linkvertise.com/cdn/ads/LV-728x90/index.html" frameborder="0" height="90" width="728"></iframe><a href="https://publisher.linkvertise.com/ac/1458681" target="_blank" style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;"></a></div>
+        
         <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#categories">Categories</a>
             <a href="#featured">Featured</a>
             <a href="#upload">Upload</a>
         </div>
+        
         <div class="search-bar">
             <input type="text" placeholder="Search books...">
             <button><i class="fas fa-search"></i></button>
@@ -39,6 +57,18 @@
             <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Books">
         </div>
     </section>
+
+    <!-- Sidebar Ad -->
+    <div class="sidebar-ad">
+        <div class="ad-sidebar">
+            <h4>Sponsored</h4>
+            <div class="ad-content">
+                <!-- يمكنك وضع إعلان آخر هنا -->
+                <p>Download amazing books for free!</p>
+                <button class="ad-button">Learn More</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Categories -->
     <section class="categories" id="categories">
@@ -71,11 +101,24 @@
         </div>
     </section>
 
-    <!-- Books Grid -->
+    <!-- Books Grid with Ad -->
     <section class="books-section" id="featured">
         <h2>Featured Books</h2>
+        
+        <!-- In-content Ad -->
+        <div class="in-content-ad">
+            <div class="ad-inline">
+                <iframe src="https://publisher.linkvertise.com/cdn/ads/LV-728x90/index.html" 
+                        frameborder="0" 
+                        height="90" 
+                        width="728">
+                </iframe>
+                <a href="https://publisher.linkvertise.com/ac/1458681" target="_blank"></a>
+            </div>
+        </div>
+        
         <div class="books-grid" id="booksContainer">
-            <!-- Books will be loaded here by JavaScript -->
+            <!-- Books will be loaded here -->
         </div>
     </section>
 
