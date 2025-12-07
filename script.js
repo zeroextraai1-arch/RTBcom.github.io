@@ -77,6 +77,71 @@ function loadBooks() {
     });
 }
 
+// Ad Management
+function showAdPopup() {
+    // Show ad popup after 10 seconds
+    setTimeout(() => {
+        const popup = document.createElement('div');
+        popup.className = 'ad-popup';
+        popup.innerHTML = `
+            <button class="close-ad">&times;</button>
+            <h4>Special Offer!</h4>
+            <p>Get premium books with 50% discount</p>
+            <button class="ad-button" onclick="visitSponsor()">Claim Offer</button>
+        `;
+        document.body.appendChild(popup);
+        
+        // Close button functionality
+        popup.querySelector('.close-ad').addEventListener('click', () => {
+            popup.remove();
+        });
+    }, 10000);
+}
+
+function visitSponsor() {
+    window.open('https://publisher.linkvertise.com/ac/1458681', '_blank');
+}
+
+// Track ad clicks
+document.querySelectorAll('.ad-link, .ad-button').forEach(link => {
+    link.addEventListener('click', function(e) {
+        // يمكنك إضافة تتبع للإعلانات هنا
+        console.log('Ad clicked:', this.href);
+        
+        // إرسال بيانات للتتبع
+        fetch('/api/track-ad-click', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                adId: '1458681',
+                timestamp: new Date().toISOString(),
+                page: window.location.href
+            })
+        });
+    });
+});
+
+// Show ads randomly
+function showRandomAd() {
+    const adPositions = ['top', 'middle', 'bottom'];
+    const randomPosition = adPositions[Math.floor(Math.random() * adPositions.length)];
+    
+    // يمكنك تغيير الإعلان بناء على الموضع
+    console.log(`Showing ad at: ${randomPosition}`);
+}
+
+// Initialize ads when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadBooks();
+    showAdPopup();
+    showRandomAd();
+    
+    // Rotate ads every 30 seconds
+    setInterval(showRandomAd, 30000);
+});
+
 // Simulate book download
 function downloadBook(bookId) {
     const book = books.find(b => b.id === bookId);
