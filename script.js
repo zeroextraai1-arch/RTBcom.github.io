@@ -1,230 +1,112 @@
-// Sample book data
-const books = [
-    {
-        id: 1,
-        title: "The Art of Programming",
-        author: "Jane Smith",
-        category: "Technology",
-        pages: 320,
-        icon: "fas fa-code"
-    },
-    {
-        id: 2,
-        title: "History of Civilizations",
-        author: "Robert Johnson",
-        category: "History",
-        pages: 450,
-        icon: "fas fa-landmark"
-    },
-    {
-        id: 3,
-        title: "Business Strategies",
-        author: "Alice Williams",
-        category: "Business",
-        pages: 280,
-        icon: "fas fa-chart-line"
-    },
-    {
-        id: 4,
-        title: "Scientific Discoveries",
-        author: "Dr. Michael Chen",
-        category: "Science",
-        pages: 380,
-        icon: "fas fa-flask"
-    },
-    {
-        id: 5,
-        title: "The Mystery House",
-        author: "Emily Davis",
-        category: "Mystery",
-        pages: 310,
-        icon: "fas fa-user-secret"
-    },
-    {
-        id: 6,
-        title: "Digital Revolution",
-        author: "Mark Wilson",
-        category: "Technology",
-        pages: 290,
-        icon: "fas fa-microchip"
-    }
-];
-
-// Load books into the grid
-function loadBooks() {
-    const booksContainer = document.getElementById('booksContainer');
-    booksContainer.innerHTML = '';
+// Ad tracking and management
+document.addEventListener('DOMContentLoaded', function() {
+    // Load books
+    loadBooks();
     
-    books.forEach(book => {
-        const bookCard = document.createElement('div');
-        bookCard.className = 'book-card';
-        
-        bookCard.innerHTML = `
-            <div class="book-cover">
-                <i class="${book.icon}"></i>
-            </div>
-            <div class="book-info">
-                <h3 class="book-title">${book.title}</h3>
-                <p class="book-author">${book.author}</p>
-                <p class="book-category">${book.category} • ${book.pages} pages</p>
-                <button class="download-btn" onclick="downloadBook(${book.id})">
-                    <i class="fas fa-download"></i> Download PDF
-                </button>
-            </div>
-        `;
-        
-        booksContainer.appendChild(bookCard);
-    });
-}
-
-// Ad Management
-function showAdPopup() {
-    // Show ad popup after 10 seconds
-    setTimeout(() => {
-        const popup = document.createElement('div');
-        popup.className = 'ad-popup';
-        popup.innerHTML = `
-            <button class="close-ad">&times;</button>
-            <h4>Special Offer!</h4>
-            <p>Get premium books with 50% discount</p>
-            <button class="ad-button" onclick="visitSponsor()">Claim Offer</button>
-        `;
-        document.body.appendChild(popup);
-        
-        // Close button functionality
-        popup.querySelector('.close-ad').addEventListener('click', () => {
-            popup.remove();
+    // Track ad clicks
+    document.querySelectorAll('.ad-link, .ad-btn, .floating-ad a').forEach(ad => {
+        ad.addEventListener('click', function(e) {
+            const adType = this.classList.contains('ad-btn') ? 'in-content' : 
+                          this.classList.contains('floating-ad') ? 'floating' : 'banner';
+            
+            // Send analytics (simulated)
+            console.log(`Ad clicked: ${adType}`);
+            
+            // You can add real analytics here
+            // Example: Google Analytics
+            // gtag('event', 'ad_click', {
+            //     'event_category': 'advertisement',
+            //     'event_label': adType
+            // });
         });
+    });
+    
+    // Show ad after 5 seconds
+    setTimeout(() => {
+        showNotificationAd();
+    }, 5000);
+});
+
+function showNotificationAd() {
+    const notification = document.createElement('div');
+    notification.className = 'notification-ad';
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="close-notification">&times;</span>
+            <h4>🎁 Special Offer!</h4>
+            <p>Get access to premium books library</p>
+            <a href="https://publisher.linkvertise.com/ac/1458681" target="_blank" class="notification-btn">
+                Claim Now
+            </a>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Close notification
+    notification.querySelector('.close-notification').addEventListener('click', () => {
+        notification.remove();
+    });
+    
+    // Auto-remove after 10 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
     }, 10000);
 }
 
-function visitSponsor() {
-    window.open('https://publisher.linkvertise.com/ac/1458681', '_blank');
+// Add this CSS for notification
+const notificationCSS = `
+.notification-ad {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    z-index: 1001;
+    animation: slideInRight 0.5s ease-out;
+    max-width: 300px;
 }
 
-// Track ad clicks
-document.querySelectorAll('.ad-link, .ad-button').forEach(link => {
-    link.addEventListener('click', function(e) {
-        // يمكنك إضافة تتبع للإعلانات هنا
-        console.log('Ad clicked:', this.href);
-        
-        // إرسال بيانات للتتبع
-        fetch('/api/track-ad-click', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                adId: '1458681',
-                timestamp: new Date().toISOString(),
-                page: window.location.href
-            })
-        });
-    });
-});
-
-// Show ads randomly
-function showRandomAd() {
-    const adPositions = ['top', 'middle', 'bottom'];
-    const randomPosition = adPositions[Math.floor(Math.random() * adPositions.length)];
-    
-    // يمكنك تغيير الإعلان بناء على الموضع
-    console.log(`Showing ad at: ${randomPosition}`);
+.notification-content {
+    padding: 15px;
+    position: relative;
 }
 
-// Initialize ads when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    loadBooks();
-    showAdPopup();
-    showRandomAd();
-    
-    // Rotate ads every 30 seconds
-    setInterval(showRandomAd, 30000);
-});
+.close-notification {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #666;
+}
 
-// Simulate book download
-function downloadBook(bookId) {
-    const book = books.find(b => b.id === bookId);
-    if (book) {
-        alert(`Starting download: "${book.title}" by ${book.author}\n\nNote: This is a demo. In a real website, this would download the PDF file.`);
-        
-        // In a real implementation, you would:
-        // 1. Track download count
-        // 2. Redirect to actual PDF file
-        // 3. Or open PDF in new tab
-        // window.open(`/books/${bookId}.pdf`, '_blank');
+.notification-btn {
+    display: inline-block;
+    background: #FF6B6B;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
     }
 }
+`;
 
-// Search functionality
-document.querySelector('.search-bar input').addEventListener('input', function(e) {
-    const searchTerm = e.target.value.toLowerCase();
-    const bookCards = document.querySelectorAll('.book-card');
-    
-    bookCards.forEach(card => {
-        const title = card.querySelector('.book-title').textContent.toLowerCase();
-        const author = card.querySelector('.book-author').textContent.toLowerCase();
-        
-        if (title.includes(searchTerm) || author.includes(searchTerm)) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-});
-
-// Upload button functionality
-document.querySelector('.upload-btn').addEventListener('click', function() {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.pdf';
-    
-    input.onchange = function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            if (file.type === 'application/pdf') {
-                if (file.size <= 50 * 1024 * 1024) { // 50MB limit
-                    alert(`File "${file.name}" selected for upload!\n\nIn a real implementation, this would upload to the server.`);
-                    // Here you would typically:
-                    // 1. Upload to server using FormData and fetch
-                    // 2. Show upload progress
-                    // 3. Add to database
-                } else {
-                    alert('File size must be less than 50MB');
-                }
-            } else {
-                alert('Please select a PDF file');
-            }
-        }
-    };
-    
-    input.click();
-});
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId !== '#') {
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        }
-    });
-});
-
-// Category card click handler
-document.querySelectorAll('.category-card').forEach(card => {
-    card.addEventListener('click', function() {
-        const category = this.querySelector('h3').textContent;
-        alert(`Showing books in: ${category}\n\nIn a real website, this would filter books by category.`);
-    });
-});
-
-// Initialize when page loads
-document.addEventListener('DOMContentLoaded', loadBooks);
+// Add notification CSS to page
+const style = document.createElement('style');
+style.textContent = notificationCSS;
+document.head.appendChild(style);
