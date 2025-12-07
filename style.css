@@ -10,7 +10,129 @@ body {
     background-color: #f5f7fa;
     color: #333;
 }
+/* Ad Styles for GitHub Pages */
+.ad-container {
+    flex: 1;
+    margin: 0 20px;
+    max-width: 300px;
+}
 
+.ad-banner {
+    background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    transition: transform 0.3s;
+}
+
+.ad-banner:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.ad-text {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.ad-cta {
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 3px 10px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+.ad-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* In-content Ad */
+.in-content-ad {
+    max-width: 800px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.ad-box {
+    background: #f8f9fa;
+    border: 2px dashed #3498db;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.ad-box h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.ad-btn {
+    display: inline-block;
+    background: #27ae60;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.ad-btn:hover {
+    background: #219653;
+}
+
+/* Floating Ad Button */
+.floating-ad {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    z-index: 1000;
+    animation: pulse 2s infinite;
+}
+
+.floating-ad a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.floating-ad i {
+    font-size: 1.2rem;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive Ads */
+@media (max-width: 768px) {
+    .ad-container {
+        display: none;
+    }
+    
+    .floating-ad {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+}
 /* Navigation */
 .navbar {
     display: flex;
